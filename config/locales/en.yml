@@ -1,0 +1,5 @@
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  ipay88_instructional_text: "You will now be redirect to Ipay88's payment gateway"
+  success: "Order processed successfully!"

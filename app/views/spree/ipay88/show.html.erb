@@ -1,0 +1,33 @@
+<div id="checkout" data-hook>
+  <%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
+  <h3><%= t(:checkout) %></h3>  
+  <div class="row">
+    <div class="<%= css_class_based_on_order_state(@order) %>">
+      <div class="clear"></div>
+      <div class="checkout_form">
+        <%= form_tag @payment_method.url do %>
+        <%
+          request_params = request_params(@payment_method,@order)
+          redirect_url    = gateway_ipay88_callback_url(@transaction, :protocol => 'http')
+        %>
+  
+          <%= hidden_field_tag 'MerchantCode',                     request_params['MerchantCode'] %>
+          <%= hidden_field_tag 'RefNo',                  request_params['RefNo'] %>
+          <%= hidden_field_tag 'Amount',                  request_params['Amount'] %>
+          <%= hidden_field_tag 'Currency',                   request_params['Currency'] %>
+          <%= hidden_field_tag 'ProdDesc',                   request_params['ProdDesc'] %>
+          <%= text_field_tag 'UserName',                   request_params['UserName'], placeholder:'Your name' %>
+          <%= email_field_tag 'UserEmail',                   request_params['UserEmail'], placeholder:'Email' %>
+          <%= telephone_field_tag 'UserContact',                   request_params['UserContact'],placeholder:"Contact Number" %>
+          <%= hidden_field_tag 'Remark',                   request_params['Remark'] %>
+          <%= hidden_field_tag 'Signature',                   request_params['Signature'] %>
+          <%= hidden_field_tag 'ResponseURL',                   redirect_url %>
+
+          <%= render :partial => 'spree/checkout/confirm' %>
+          <p style="margin: 10px 0;"><%= t(:ipay88_instructional_text) %></p><br/>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

@@ -23,6 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency "spree_core", "~> 3.0.4"
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "cucumber"
-  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "minitest", "~> 5.9"
 end

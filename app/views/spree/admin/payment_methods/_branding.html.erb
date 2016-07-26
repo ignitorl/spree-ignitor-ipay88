@@ -1,0 +1,3 @@
+<% if !payment_method.new_record? && payment_method.provider_class.name.downcase.include? 'ipay88' %>
+<%= image_tag 'ignitor_logo.png',alt:'Ignitor Learning' %>
+<% end %>
