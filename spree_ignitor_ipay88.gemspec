@@ -20,7 +20,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements = 'none'
 
-  s.add_dependency "spree_core", "~> 3.0.4"
+  s.add_dependency "spree_core", "~> 3.0.4" 
+# This depends on rails 4.2 . The extension has taken advantage of some of the new features offered by Rails 4
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "minitest", "~> 5.9"
