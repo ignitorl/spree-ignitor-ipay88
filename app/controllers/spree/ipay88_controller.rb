@@ -89,6 +89,7 @@ module Spree
       raise "Transaction with id: #{params[:id]} not found!" unless @transaction
       merchant_key = @transaction.payment_method.preferred_merchant_key
       # Produces white screen
+      @ipay_88_error = params["ErrDesc"]
       render 'error' unless params["Signature"] == get_response_signature(params,merchant_key)
     end
 
