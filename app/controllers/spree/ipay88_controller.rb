@@ -5,7 +5,6 @@ module Spree
     # Ensure that the callback is redirected from Ipay88' secure server
     before_action :check_signature, only: :callback
     helper 'spree/orders'
-    binding.pry
     include Spree::Ipay88Helper
 
     # This is the method which renders the form which redirects to Ipay88 upon form submission from user's browser
