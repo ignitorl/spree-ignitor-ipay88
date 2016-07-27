@@ -1,11 +1,12 @@
 module Spree
   class Ipay88Controller < StoreController
     # Because call back should come from Ipay. They don't have an authenticity token
-    skip_before_filter :verify_authenticity_token, only: :callback
+    skip_before_action :verify_authenticity_token, only: :callback
     # Ensure that the callback is redirected from Ipay88' secure server
-    before_filter :check_signature, only: :callback
+    before_action :check_signature, only: :callback
     helper 'spree/orders'
-    helper 'spree/ipay88'
+    binding.pry
+    include Spree::Ipay88Helper
 
     # This is the method which renders the form which redirects to Ipay88 upon form submission from user's browser
     def show
@@ -18,7 +19,7 @@ module Spree
         # Don't render anything just show a flash message in the existing screen (checkout#edit)
         render :error
         return
-      end
+      end      
 
       @order = current_order
       if @order.has_authorized_ipay88_transaction?
@@ -43,7 +44,7 @@ module Spree
       @order.save!
       # these are needed on the view
       @bill_address, @ship_address = @order.bill_address, (@order.ship_address || @order.bill_address)
-      logger.info("Will send order #{order.number} to Ipay88 with local transaction ID: #{@transaction.id}")
+      logger.info("Will send order #{@order.number} to Ipay88 with local transaction ID: #{@transaction.id}")
     end    
 
     # Responds to the Ipay88 initiated redirect. This is the URL which is given to Ipay88 as a redirect/callback url

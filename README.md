@@ -1,5 +1,6 @@
 # Spree Ignitor Ipay88
 
+# UNDER DEVELOPMENT
 This is a plugin which seamlessly integrates any Spree Commerce based application with Ipay88 payment gateway, a service widely used in South-East Asia. 
 
 #### The following steps are involved

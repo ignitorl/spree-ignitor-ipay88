@@ -40,7 +40,7 @@ module Spree
 
     state_machine :initial=> :created, :use_transactions => false do 
 
-      before_transition :to => :sent :do => :initialize_state!
+      before_transition :to => :sent, :do => :initialize_state!
 
       event :transact do 
         transition :created => :sent 
@@ -75,7 +75,7 @@ module Spree
     end
 
     def initialize_state!
-      if order.confirmation.required && !order.confirm?        
+      if order.confirmation_required? && !order.confirm?        
         raise "Order is not in 'confirm' state. Order should be in 'confirm' state before transaction can be sent to CCAvenue"
       end
       this = self
@@ -95,9 +95,9 @@ module Spree
       record = true
       #  attempts to create a record till you meet an unused transaction number and finaly creates a record 
       # whose transaction number is unique
-      while record 
+      while record.present?
         random = "#{Array.new(4){rand(4)}.join}"
-        record = Spree::Ipay88::Transaction.where(order_id: self.order_id,transaction_number: random)
+        record = Spree::Ipay88::Transaction.where(order_id: self.order.id,transaction_number: random)
       end
       self.transaction_number = random
     end
@@ -106,8 +106,8 @@ module Spree
       if !args or args.empty?
         super(*args)
       else
-        from_admin = args[0].delete['from_admin']
-        super[*args]
+        from_admin = args[0].delete('from_admin')
+        super(*args)
         if from_admin
           self.amount = self.order.amount
           self.transact

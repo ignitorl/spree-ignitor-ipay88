@@ -8,7 +8,7 @@ module Spree
       request_params = {"MerchantCode"=>payment_method.preferred_merchant_code,"RefNo"=>order.number,
         "Amount"=>get_amount(order),"Currency"=>order.currency,"ProdDesc"=>order.prod_desc,
         "UserName"=>"","UserEmail"=>"","UserContact"=>"",
-        "Remark"=>"","Signature"=>get_signature(payment_method,order),"ResponseURL"=>""}
+        "Remark"=>"","Signature"=>get_request_signature(payment_method,order),"ResponseURL"=>""}
     end
 
     def get_amount(order)
