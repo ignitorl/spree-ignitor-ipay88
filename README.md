@@ -45,6 +45,7 @@ The plugin supports
 
    - Spree 3.0.4
    - Rails 4.2
+   
 ## Credits
 Developed by Edutor Technologies (Ignitor Learning). 
 ##### Main contributors:  

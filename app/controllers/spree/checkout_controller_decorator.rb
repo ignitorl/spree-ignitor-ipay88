@@ -1,7 +1,7 @@
 module Spree
   CheckoutController.class_eval do 
 
-    before_filter :push_to_ipay88_show_action, only: :update
+    before_action :push_to_ipay88_show_action, only: :update
 
     private 
 
