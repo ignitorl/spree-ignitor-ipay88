@@ -45,11 +45,13 @@ The plugin supports
 
    - Spree 3.0.4
    - Rails 4.2
-   
+
 ## Credits
 Developed by Edutor Technologies (Ignitor Learning). 
+
 ##### Main contributors:  
   - Sriharsha Chintalapati 
   - Dilip Reddy
+
 ## License
 This product is licensed under **MIT License**. Please check the document for details.
