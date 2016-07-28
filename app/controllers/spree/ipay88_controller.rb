@@ -66,7 +66,7 @@ module Spree
         # Handles transaction states
         if @transaction.authorized? # Success
           session[:order_id] = nil
-          flash.notice = I18n.t(:success)
+          flash[:success] = I18n.t(:success)
           # Google analytics part
           # flash[:commerce_tracking] = 'nothing special'
           if session[:access_token].nil?
