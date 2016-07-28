@@ -22,7 +22,7 @@ module Spree
     # Calculates request signature which is used by Ipay88 to verify if the request is received with right amount from the right merchant 
     def get_request_signature(payment_method,order)
      params = {merchant_key:payment_method.preferred_merchant_key,merchant_code:payment_method.preferred_merchant_code,
-      order_number:order.number,simplified_amount:get_simplified_amount(order),currency:order.currency}
+      ref_no:order.number,simplified_amount:get_simplified_amount(order),currency:order.currency}
       SHA1Encryptor.request_signature(params)
     end
 
@@ -30,8 +30,9 @@ module Spree
     def get_response_signature(params,merchant_key)
       simplified_amount = params["Amount"].gsub(/[\.\,]/,"")
       signature_params = {merchant_key:merchant_key,merchant_code:params["MerchantCode"],
-      order_number:params["RefNo"],simplified_amount:simplified_amount,currency:params["Currency"]}
-      SHA1Encryptor.request_signature(signature_params)
+      ref_no:params["RefNo"],simplified_amount:simplified_amount,currency:params["Currency"],
+      status:params["Status"]}
+      SHA1Encryptor.response_signature(signature_params)
     end
   end
 end
