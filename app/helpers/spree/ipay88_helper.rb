@@ -29,7 +29,7 @@ module Spree
     # Directly send in response params to generate response signature
     def get_response_signature(params,merchant_key)
       simplified_amount = params["Amount"].gsub(/[\.\,]/,"")
-      signature_params = {merchant_key:merchant_key,merchant_code:params["MerchantCode"],
+      signature_params = {merchant_key:merchant_key,merchant_code:params["MerchantCode"],payment_id:params["PaymentId"],
       ref_no:params["RefNo"],simplified_amount:simplified_amount,currency:params["Currency"],
       status:params["Status"]}
       SHA1Encryptor.response_signature(signature_params)
