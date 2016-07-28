@@ -68,7 +68,7 @@ module Spree
           session[:order_id] = nil
           flash.notice = I18n.t(:success)
           # Google analytics part
-          flash[:commerce_tracking] = 'nothing special'
+          # flash[:commerce_tracking] = 'nothing special'
           if session[:access_token].nil?
             redirect_to order_path(@transaction.order, {:order_complete => true})
           else  # Enables the url to be reused and copied else where a.k.a the page will still be displayed
@@ -89,7 +89,7 @@ module Spree
       raise "Transaction with id: #{params[:id]} not found!" unless @transaction
       merchant_key = @transaction.payment_method.preferred_merchant_key
       # Produces white screen
-      @ipay_88_error = params["ErrDesc"]
+      @ipay88_error = params["ErrDesc"]
       render 'error' unless params["Signature"] == get_response_signature(params,merchant_key)
     end
 
