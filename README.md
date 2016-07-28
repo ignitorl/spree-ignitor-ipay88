@@ -43,8 +43,11 @@ Before installing this plugin, we assume that the merchant has registered with I
 ## Dependencies
 The plugin supports
 
-   - Spree 3.0.4
-   - Rails 4.2
+  - Spree 3.0.4
+  - Rails 4.2
+
+## Useful Notes
+  - Gems that are sourced from Github won't update automatically when you do a ```bundle install```. So in our case you have to ```bundle update spree_ignitor_ipay88`` in order to be in sync wih the current master branch
 
 ## Credits
 Developed by Edutor Technologies (Ignitor Learning). 
