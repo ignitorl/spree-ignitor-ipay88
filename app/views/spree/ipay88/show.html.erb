@@ -8,7 +8,7 @@
         <%= form_tag @payment_method.url do %>
         <%
           request_params = request_params(@payment_method,@order)
-          redirect_url    = gateway_ipay88_callback_url(@transaction, :protocol => 'http')
+          redirect_url    = gateway_ipay88_callback_url(@transaction, :protocol => request.protocol)
         %>
 
           <div style="padding:10px;background-color:#fcf8e3">
